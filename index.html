@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<!--
+  Djeango Tech - The Self-Hosted LLM Kit - RELAUNCH landing page (4-card flagship)
+  Rebranded to the Djeango house palette (charcoal #0F0E0C / cream #F3EAD9 / orange #E8722A).
+  Dark by default so a sanitizer that strips the script still renders correctly and purchasable.
+  All motion is scoped under .js and respects prefers-reduced-motion.
+
+  ============================ DO NOT PUBLISH AS-IS ============================
+  Buy buttons point at the Gumroad product URL and work as-is. Optional upgrade:
+   1. Save the 5 Gumroad Versions (Fit Check $0, Builder $29, Operator $59, Architect $99, Full Stack $149).
+   2. Run LIST_PRODUCTS and copy the EXACT saved variant names.
+   3. Replace every data-gumroad-option below with the verified name. WATCH FOR LEADING/TRAILING SPACES.
+   4. Preview -> confirm sanitizer report clean -> publish -> click every buy button through checkout.
+  =============================================================================
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Self-Hosted LLM Kit | Djeango Tech</title>
+
+<!-- ===== SOCIAL / SEO ==================================================
+     URLs point at kit.djeango.com. Change all three below if that ever moves.
+     Upload og-llm-kit.png into the SAME folder as this file.
+     ==================================================================== -->
+<link rel="canonical" href="https://kit.djeango.com/">
+<meta name="description" content="Run a capable AI on hardware you own. 148 pages across 14 guides plus working code, from picking parts to an assistant that remembers your documents. Free tier to check your machine first.">
+<meta name="theme-color" content="#0F0E0C">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Djeango Tech">
+<meta property="og:url" content="https://kit.djeango.com/">
+<meta property="og:title" content="The Self-Hosted LLM Kit: Own Your AI, From First Model to Full Stack">
+<meta property="og:description" content="Stop renting intelligence. 148 pages across 14 guides plus working code, from picking parts to an assistant that remembers you. Start free and find out what your machine can already run.">
+<meta property="og:image" content="https://kit.djeango.com/og-llm-kit.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The Self-Hosted LLM Kit by Djeango Tech. Free, Builder 29, Operator 59, Architect 99, Full Stack 149.">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Self-Hosted LLM Kit: Own Your AI, From First Model to Full Stack">
+<meta name="twitter:description" content="Stop renting intelligence. 148 pages across 14 guides plus working code. Start free and find out what your machine can already run.">
+<meta name="twitter:image" content="https://kit.djeango.com/og-llm-kit.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0F0E0C; --bg2:#141210; --ink:#0a0908;
+    --cream:#F3EAD9; --paper:#efe6d5;
+    --orange:#E8722A; --orange2:#f0995f; --amber:#ffd9a8;
+    --text:#F3EAD9; --muted:#8a8378; --body:#b7ae9e; --line:rgba(243,234,217,.10);
+    --card:#17150F; --card2:#1f1c15;
+    --good:#7fb069;
+    --radius:16px; --maxw:1080px;
+    --fg:var(--text);
+  }
+  .light{
+    --bg:#F3EAD9; --fg:#17150F; --text:#17150F; --muted:#6b645a; --body:#3d3830;
+    --card:#ffffff; --card2:#efe6d5; --line:rgba(15,14,12,.12);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; background:var(--bg); color:var(--fg);
+    font:16.5px/1.65 'IBM Plex Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 22px}
+  a{color:inherit}
+  h1,h2,h3{line-height:1.15; margin:0 0 .4em; font-family:'Chakra Petch','IBM Plex Sans',sans-serif}
+  h1{font-size:clamp(34px,5.8vw,60px); letter-spacing:.005em; font-weight:700; text-transform:uppercase}
+  h1 .o{color:var(--orange)}
+  h2{font-size:clamp(24px,3.6vw,36px); font-weight:700; letter-spacing:.005em}
+  h3{font-size:19px; font-weight:700}
+  p{margin:0 0 1em}
+  .mono{font-family:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,monospace}
+  .eyebrow{font-family:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+    font-size:13px; letter-spacing:.18em; text-transform:uppercase; color:var(--orange); margin-bottom:14px}
+  .btn{display:inline-block; padding:16px 28px; font-size:16px; font-family:'Chakra Petch','IBM Plex Sans',sans-serif; border-radius:12px; font-weight:700;
+    text-decoration:none; cursor:pointer; border:1px solid transparent; transition:transform .15s ease, box-shadow .15s ease}
+  .btn-primary{background:linear-gradient(180deg,var(--orange2),var(--orange)); color:#1a0f06;
+    box-shadow:0 10px 26px rgba(232,114,42,.30)}
+  .btn-ghost{background:transparent; border-color:var(--line); color:var(--fg)}
+  .btn:hover{transform:translateY(-2px)}
+  .topbar{position:sticky; top:0; z-index:40; backdrop-filter:blur(9px);
+    background:color-mix(in srgb, var(--bg) 82%, transparent); border-bottom:1px solid var(--line)}
+  .topbar .wrap{display:flex; align-items:center; justify-content:space-between; height:60px}
+  .brand{display:flex; align-items:center; gap:11px}
+  .wordmark{font-family:'Chakra Petch',sans-serif; font-weight:600; letter-spacing:.32em; font-size:13.5px; color:var(--fg)}
+  .dot{width:11px; height:11px; border-radius:50%; background:var(--orange); box-shadow:0 0 0 4px rgba(232,114,42,.18)}
+  .toggle{background:transparent; border:1px solid var(--line); color:var(--muted);
+    border-radius:9px; padding:7px 12px; font-size:13px; cursor:pointer}
+  .hero{position:relative; overflow:hidden; padding:96px 0 44px}
+  .hero:before{content:""; position:absolute; inset:-30% -10% auto -10%; height:70%;
+    background:radial-gradient(60% 60% at 70% 20%, rgba(232,114,42,.18), transparent 70%); pointer-events:none}
+  .hero-grid{display:grid; grid-template-columns:1.12fr .88fr; gap:56px; align-items:center; position:relative}
+  .subhead{font-size:20px; color:var(--body); max-width:44ch; line-height:1.7; margin-bottom:4px}
+  .divider{width:64px; height:3px; border-radius:3px; background:var(--orange); margin:18px 0 20px}
+  .pills{display:flex; flex-wrap:wrap; gap:10px; margin:28px 0 34px}
+  .pill{font-size:13px; padding:8px 13px; border:1px solid var(--line); border-radius:999px; color:var(--muted)}
+  .pill b{color:var(--fg)}
+  .cta-row{display:flex; flex-wrap:wrap; gap:14px; align-items:center}
+  .term{background:#0b0a08; border:1px solid rgba(243,234,217,.10); border-radius:14px; overflow:hidden;
+    box-shadow:0 24px 60px rgba(0,0,0,.55)}
+  .term-bar{display:flex; gap:7px; padding:12px 14px; background:#12100d; border-bottom:1px solid rgba(243,234,217,.06)}
+  .tb{width:11px; height:11px; border-radius:50%}
+  .tb.r{background:#e8725a}.tb.y{background:#d8a24a}.tb.g{background:#7fb069}
+  .term-body{padding:18px 18px 22px; font-family:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,monospace; font-size:14.5px; color:#e6ddcc}
+  .term-body .l{opacity:0; white-space:pre-wrap}
+  .js .term-body .l{animation:fade .5s ease forwards}
+  .js .term-body .l:nth-child(1){animation-delay:.15s}
+  .js .term-body .l:nth-child(2){animation-delay:.75s}
+  .js .term-body .l:nth-child(3){animation-delay:1.5s}
+  .js .term-body .l:nth-child(4){animation-delay:2.2s}
+  .no-js .term-body .l{opacity:1}
+  .prompt{color:var(--orange)}
+  .reply{color:#e6ddcc}
+  .payoff{color:var(--good); font-weight:700}
+  .cursor{display:inline-block; width:9px; height:17px; background:var(--orange); vertical-align:-3px; margin-left:2px}
+  .js .cursor{animation:blink 1s step-end infinite}
+  @keyframes fade{to{opacity:1}}
+  @keyframes blink{50%{opacity:0}}
+  .journey{margin:34px 0 6px; position:relative; display:flex; justify-content:space-between; align-items:center;
+    padding:22px 10px; border:1px solid var(--line); border-radius:14px; background:var(--card2)}
+  .jnode{display:flex; flex-direction:column; align-items:center; gap:9px; text-align:center; flex:1; position:relative; z-index:2}
+  .jbead{width:15px; height:15px; border-radius:50%; background:var(--orange); box-shadow:0 0 0 5px rgba(232,114,42,.16)}
+  .js .jbead{animation:pulse 2.6s ease-in-out infinite}
+  .jnode:nth-child(2) .jbead{animation-delay:.6s}
+  .jnode:nth-child(3) .jbead{animation-delay:1.2s}
+  .jlabel{font-size:13.5px; color:var(--muted)} .jlabel b{color:var(--fg); display:block; font-size:14.5px}
+  .jline{position:absolute; top:50%; left:8%; right:8%; height:2px; background:linear-gradient(90deg,transparent,var(--orange),transparent); z-index:1; opacity:.5}
+  @keyframes pulse{0%,100%{transform:scale(1); opacity:1}50%{transform:scale(1.35); opacity:.75}}
+  section{padding:84px 0}
+  section.tight{padding:56px 0}
+  .secnum{font-family:'IBM Plex Mono',ui-monospace,monospace; color:var(--muted); font-size:12px; letter-spacing:.22em; margin-bottom:10px}
+  .secnum b{color:var(--orange)}
+  .js .rv{opacity:0; transform:translateY(26px); transition:opacity .7s ease, transform .7s ease}
+  .js .rv.vis{opacity:1; transform:none}
+  .lead{color:var(--body); max-width:60ch; font-size:17px}
+  .freestrip{background:linear-gradient(180deg,var(--card),var(--card2)); border:1px solid var(--line);
+    border-radius:16px; padding:26px 28px; display:flex; flex-wrap:wrap; gap:18px; align-items:center; justify-content:space-between}
+  .freestrip .fx{max-width:60ch}
+  .freetag{font-family:'IBM Plex Mono',ui-monospace,monospace; font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--good)}
+  .prices{display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-top:26px; align-items:stretch}
+  .pcard{background:var(--card); border:1px solid var(--line); border-radius:var(--radius); padding:24px 20px 22px;
+    display:flex; flex-direction:column; position:relative; transition:transform .15s ease, box-shadow .15s ease}
+  .pcard:hover{transform:translateY(-4px); box-shadow:0 18px 40px rgba(0,0,0,.42)}
+  .pcard.feature{border-color:rgba(232,114,42,.55); box-shadow:0 0 0 1px rgba(232,114,42,.35), 0 18px 44px rgba(232,114,42,.12)}
+  .badge{position:absolute; top:-11px; left:50%; transform:translateX(-50%); white-space:nowrap;
+    font-size:11.5px; font-weight:800; letter-spacing:.04em; text-transform:uppercase;
+    padding:5px 12px; border-radius:999px; background:linear-gradient(180deg,var(--orange2),var(--orange)); color:#1a0f06}
+  .badge.alt{background:linear-gradient(180deg,#f5e0c2,#d8a24a); color:#241703}
+  .tier{font-family:'IBM Plex Mono',ui-monospace,monospace; font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--orange)}
+  .price{font-size:34px; font-weight:800; margin:6px 0 0}
+  .anchor{color:var(--muted); text-decoration:line-through; font-size:15px; margin-left:6px; font-weight:600}
+  .ptag{color:var(--body); font-size:14px; min-height:44px; margin:8px 0 12px}
+  .plist{list-style:none; padding:0; margin:0 0 18px; font-size:14px; color:var(--muted); flex:1}
+  .plist li{padding:6px 0 6px 22px; position:relative}
+  .plist li:before{content:"+"; position:absolute; left:2px; color:var(--orange); font-weight:800}
+  .pcard .btn{width:100%; text-align:center}
+  .kit10{font-size:12.5px; color:var(--muted); text-align:center; margin-top:22px}
+  .kit10 b{color:var(--orange)}
+  .fgrid{display:grid; grid-template-columns:repeat(2,1fr); gap:16px; margin-top:26px}
+  .fcell{background:var(--card2); border:1px solid var(--line); border-radius:14px; padding:22px}
+  .fnum{font-family:'IBM Plex Mono',ui-monospace,monospace; color:var(--orange); font-size:13px; letter-spacing:.1em}
+  .fcell h3{margin:8px 0 6px}
+  .fcell p{color:var(--body); font-size:15px; margin:0}
+  .persona{display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:24px}
+  .pc{background:var(--card2); border:1px solid var(--line); border-radius:14px; padding:20px}
+  .pc h3{font-size:16px} .pc p{color:var(--body); font-size:14.5px; margin:0}
+  .faq{margin-top:22px}
+  .qa{border-top:1px solid var(--line); padding:18px 0}
+  .qa h3{font-size:17px; margin:0 0 6px} .qa p{color:var(--body); margin:0; font-size:15px}
+  .final{background:linear-gradient(180deg,var(--card),var(--card2)); border:1px solid var(--line);
+    border-radius:20px; padding:44px 30px; text-align:center}
+  .final h2{margin-bottom:10px}
+  .fine{color:var(--muted); font-size:12.5px; border-top:1px solid var(--line); padding:26px 0 34px}
+  .fine a{color:var(--orange)}
+  #buybar{position:fixed; left:0; right:0; bottom:0; z-index:50; transform:translateY(120%); transition:transform .3s ease;
+    background:color-mix(in srgb, var(--bg) 90%, transparent); backdrop-filter:blur(10px); border-top:1px solid var(--line)}
+  #buybar.show{transform:translateY(0)}
+  #buybar .wrap{display:flex; align-items:center; justify-content:space-between; gap:14px; padding:12px 22px}
+  #buybar .bt{font-size:14px; color:var(--muted)} #buybar .bt b{color:var(--fg)}
+  @media (max-width:900px){
+    .hero-grid{grid-template-columns:1fr; gap:26px}
+    .prices{grid-template-columns:repeat(2,1fr)}
+    .fgrid,.persona{grid-template-columns:1fr}
+  }
+  @media (max-width:540px){
+    .prices{grid-template-columns:1fr}
+    #buybar .bt{display:none}
+  }
+
+  /* ---- embedded Fit Check ---- */
+  #fitcheck-app{max-width:760px; margin-top:26px}
+  #fitcheck-app .bar{height:6px; background:var(--card2); border:1px solid var(--line); border-radius:3px; margin-bottom:22px; overflow:hidden}
+  #fitcheck-app .bar i{display:block; height:100%; background:var(--orange); border-radius:3px; transition:width .3s; width:0}
+  #fitcheck-app .card{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:22px; margin-bottom:14px}
+  #fitcheck-app .qnum{color:var(--orange); font-size:12px; font-weight:800; letter-spacing:.14em; margin-bottom:6px}
+  #fitcheck-app .qtext{font-size:18px; font-weight:700; margin-bottom:4px}
+  #fitcheck-app .qhelp{color:var(--muted); font-size:13.5px; line-height:1.5; margin-bottom:14px}
+  #fitcheck-app .opts{display:grid; gap:8px}
+  #fitcheck-app .opt{display:flex; align-items:center; gap:10px; background:var(--card2); border:1px solid var(--line);
+    border-radius:10px; padding:12px 14px; cursor:pointer; transition:border-color .15s, transform .1s;
+    font-size:15px; text-align:left; color:var(--fg); width:100%; font-family:inherit}
+  #fitcheck-app .opt:hover{border-color:var(--orange2); transform:translateY(-1px)}
+  #fitcheck-app .opt.sel{border-color:var(--orange); background:rgba(232,114,42,.10); box-shadow:0 0 0 1px var(--orange)}
+  #fitcheck-app .opt small{color:var(--muted); display:block; font-size:12.5px; margin-top:2px}
+  #fitcheck-app .opt .dot2{width:14px; height:14px; border:2px solid var(--muted); border-radius:50%; flex-shrink:0; margin-left:auto}
+  #fitcheck-app .opt.sel .dot2{border-color:var(--orange); background:var(--orange)}
+  #fitcheck-app .hidden{display:none}
+  #fitcheck-app .factions{display:flex; gap:12px; margin-top:20px; flex-wrap:wrap}
+  #fitcheck-app .scorewrap{display:flex; align-items:center; gap:22px; flex-wrap:wrap; margin-bottom:6px}
+  #fitcheck-app .ring{width:120px; height:120px; border-radius:50%; display:grid; place-items:center; flex-shrink:0;
+    background:conic-gradient(var(--orange) calc(var(--pct)*1%), var(--card2) 0); position:relative}
+  #fitcheck-app .ring::before{content:""; position:absolute; inset:10px; background:var(--card); border-radius:50%}
+  #fitcheck-app .ring span{position:relative; font-size:30px; font-weight:800}
+  #fitcheck-app .ring small{position:relative; font-size:10px; color:var(--muted); letter-spacing:.1em}
+  #fitcheck-app .verdict{font-size:22px; font-weight:800; margin-bottom:6px}
+  #fitcheck-app .verdict.good{color:var(--good)} #fitcheck-app .verdict.ok{color:#d8a24a} #fitcheck-app .verdict.warn{color:#e8725a}
+  #fitcheck-app .explain{color:var(--body); font-size:14.5px; line-height:1.6}
+  #fitcheck-app .sectionlabel{color:var(--orange); font-size:12px; font-weight:800; letter-spacing:.16em; text-transform:uppercase; margin:22px 0 10px}
+  #fitcheck-app .model{display:flex; justify-content:space-between; align-items:center; gap:12px; background:var(--card2);
+    border:1px solid var(--line); border-radius:10px; padding:12px 14px; margin-bottom:8px; flex-wrap:wrap}
+  #fitcheck-app .model b{font-size:15px} #fitcheck-app .model .why{color:var(--muted); font-size:12.5px; margin-top:2px; max-width:44ch}
+  #fitcheck-app .pull{font-family:'IBM Plex Mono',ui-monospace,Menlo,monospace; font-size:12px; color:var(--orange);
+    background:#0b0a08; border:1px solid var(--line); border-radius:6px; padding:6px 10px; white-space:nowrap}
+  #fitcheck-app .upgrade{background:linear-gradient(135deg,rgba(232,114,42,.10),var(--card2)); border:1px solid rgba(232,114,42,.45); border-radius:12px; padding:18px}
+  #fitcheck-app .upgrade b{color:var(--orange)}
+  #fitcheck-app .sidebar{background:#0b0a08; border-left:3px solid var(--orange); border-radius:0 10px 10px 0; padding:14px 16px; margin:14px 0; font-size:13.5px; color:var(--body); line-height:1.6}
+  #fitcheck-app .sidebar b{color:var(--fg)}
+  #fitcheck-app .fccta{background:linear-gradient(135deg,rgba(232,114,42,.12),var(--card2)); border:1px solid var(--orange); border-radius:14px; padding:24px; margin-top:18px; text-align:center}
+  #fitcheck-app .fccta h3{font-size:20px; margin-bottom:8px} #fitcheck-app .fccta p{color:var(--body); font-size:14px; line-height:1.55; margin-bottom:16px}
+  #fitcheck-app .fcfine{color:var(--muted); font-size:11.5px; margin-top:22px; line-height:1.5}
+  /* ---- guide promo ---- */
+  .promo{display:grid; grid-template-columns:.9fr 1.1fr; gap:34px; align-items:center;
+    background:linear-gradient(180deg,var(--card),var(--card2)); border:1px solid rgba(232,114,42,.4); border-radius:20px; padding:34px}
+  .bookmock{aspect-ratio:3/4; max-width:290px; margin:0 auto; background:linear-gradient(160deg,#1c1913,#0b0a08);
+    border:1px solid var(--line); border-radius:10px; box-shadow:14px 14px 0 rgba(232,114,42,.14), 0 24px 50px rgba(0,0,0,.5);
+    display:flex; flex-direction:column; justify-content:space-between; padding:22px; position:relative; overflow:hidden}
+  .bookmock:before{content:""; position:absolute; left:0; top:0; bottom:0; width:6px; background:var(--orange)}
+  .bm-brand{font-family:'IBM Plex Mono',ui-monospace,monospace; font-size:10px; letter-spacing:.3em; color:var(--muted)}
+  .bm-title{font-size:24px; font-weight:800; line-height:1.15}
+  .bm-sub{color:var(--muted); font-size:12px; line-height:1.5}
+  .bm-tier{font-family:'IBM Plex Mono',ui-monospace,monospace; font-size:10px; letter-spacing:.18em; color:var(--orange); text-transform:uppercase}
+  .promo-list{list-style:none; padding:0; margin:14px 0 20px; color:var(--body); font-size:14.5px}
+  .promo-list li{padding:7px 0 7px 24px; position:relative}
+  .promo-list li:before{content:"+"; position:absolute; left:2px; color:var(--orange); font-weight:800}
+  .gprice{display:flex; align-items:baseline; gap:12px; flex-wrap:wrap; margin:6px 0 16px}
+  .gnow{font-family:'Chakra Petch',sans-serif; font-size:40px; font-weight:700; color:var(--orange)}
+  .gwas{color:var(--muted); text-decoration:line-through; font-size:18px}
+.glaunch{color:var(--accent); font-family:var(--mono); font-size:11px; letter-spacing:.16em; text-transform:uppercase; border:1px solid var(--accent); padding:3px 9px; margin-left:10px; white-space:nowrap}
+  .gnote{color:var(--body); font-size:13.5px; max-width:34ch}
+  .gtrust{color:var(--muted); font-size:12.5px; margin-top:14px}
+  .chartcard{margin-top:40px; background:var(--card); border:1px solid var(--line); border-radius:18px; padding:26px 26px 18px}
+  .charthead{display:flex; justify-content:space-between; gap:18px; flex-wrap:wrap; align-items:flex-start; margin-bottom:14px}
+  .legend{display:flex; flex-direction:column; gap:6px; font-size:12.5px; color:var(--muted)}
+  .legend i{display:inline-block; width:18px; height:3px; border-radius:2px; margin-right:8px; vertical-align:middle}
+  .chartcard svg{width:100%; height:auto; display:block}
+  .chartnote{color:var(--muted); font-size:12.5px; line-height:1.6; margin:14px 0 4px}
+  /* tier slideshow: stacked by default (no-js safe), slider under .js */
+  .slider{margin-top:30px}
+  .strack{display:flex; flex-direction:column; gap:22px}
+  .slide{display:grid; grid-template-columns:.85fr 1.15fr; gap:34px; align-items:center;
+    background:linear-gradient(180deg,var(--card),var(--card2)); border:1px solid var(--line); border-radius:20px; padding:32px}
+  .js .strack{flex-direction:row; gap:0; transition:transform .5s cubic-bezier(.22,.8,.3,1)}
+  .js .slider{overflow:hidden}
+  .js .slide{min-width:100%}
+  .scontent h3{font-size:clamp(19px,2.4vw,25px); margin:6px 0 10px}
+  .tilemock{aspect-ratio:3/4; max-width:290px; margin:0 auto; width:100%;
+    background:linear-gradient(160deg,#1c1913,#0b0a08); border:1px solid var(--line); border-radius:10px;
+    box-shadow:14px 14px 0 rgba(232,114,42,.14), 0 24px 50px rgba(0,0,0,.5);
+    display:flex; flex-direction:column; justify-content:space-between; padding:22px; position:relative; overflow:hidden}
+  .tilemock:before{content:""; position:absolute; left:0; top:0; bottom:0; width:6px; background:var(--orange)}
+  .tilemock.feature{border-color:rgba(232,114,42,.5)}
+  .tm-num{font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.3em; color:var(--muted)}
+  .tm-name{font-family:'Chakra Petch',sans-serif; font-size:26px; font-weight:700; text-transform:uppercase}
+  .tm-tag{color:var(--muted); font-size:12.5px; line-height:1.5}
+  .tm-art{font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--orange); background:#0b0a08;
+    border:1px solid var(--line); border-radius:8px; padding:10px 12px; line-height:1.7}
+  .snav{display:none; align-items:center; justify-content:center; gap:18px; margin-top:20px}
+  .js .snav{display:flex}
+  .sarrow{background:var(--card); border:1px solid var(--line); color:var(--fg); width:44px; height:44px;
+    border-radius:50%; font-size:18px; cursor:pointer; transition:border-color .15s}
+  .sarrow:hover{border-color:var(--orange)}
+  .sdots{display:flex; gap:8px}
+  .sdot{width:10px; height:10px; border-radius:50%; border:1px solid var(--muted); background:transparent; cursor:pointer; padding:0}
+  .sdot.on{background:var(--orange); border-color:var(--orange)}
+  @media (max-width:820px){.slide{grid-template-columns:1fr}}
+  @media (max-width:820px){.promo{grid-template-columns:1fr}}
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none !important; transition:none !important}
+    .term-body .l{opacity:1 !important}
+  }
+
+.fcsave{margin-top:18px;padding:20px;background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent)}
+.fcsave h4{margin:0 0 6px;font-family:var(--bodyf);font-size:16px;color:var(--text);font-weight:700}
+.fcsave p{margin:0 0 14px;font-size:14px;color:var(--muted);line-height:1.5}
+.fcrow{display:flex;flex-wrap:wrap;gap:10px}
+.fcrow input[type=email]{flex:1 1 240px;min-width:0;padding:12px 14px;background:var(--bg);border:1px solid var(--border);color:var(--text);font-family:var(--bodyf);font-size:15px}
+.fcrow input[type=email]:focus{outline:none;border-color:var(--accent)}
+.fcnote{margin-top:10px;font-size:12.5px;color:var(--muted)}
+.fcmsg{margin-top:12px;font-size:14px;color:var(--accent);display:none}
+.fcshare{margin-top:18px;padding-top:18px;border-top:1px solid var(--line)}
+.fcshare .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.fcshare .row{display:flex;flex-wrap:wrap;gap:10px}
+.fcshare a,.fcshare button{font-family:var(--display);text-transform:uppercase;letter-spacing:.09em;font-weight:700;font-size:12px;padding:9px 16px;border:1px solid var(--border);color:var(--body);background:none;cursor:pointer;transition:.18s;text-decoration:none}
+.fcshare a:hover,.fcshare button:hover{border-color:var(--accent);color:var(--accent)}
+</style>
+</head>
+<body class="no-js">
+
+<div class="topbar"><div class="wrap">
+  <div class="brand"><img src="data:image/png;base64,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q/k0ogYSciobRU3kIxR9IY1IbBFpPSdNFFwDXAw8t4nhAQ0LEJhzbeJZM3s98DaKSYbqFxGROuuRToK7wPuBXzezu/O8t0aFBzS42cdL1yx29+OBjwOPpfiAGheOIjK1otYxA2wE3mBmn4xVN5rS5zGosYWsmXkOjxkz+xrwDOBTpGSP2khtx0+LSGvMUqwyfinwzBweMzCnVaVxGhsgIU8y7JrZBjP7XeBU0iUfZyj6SxQkIjJp0SQ1A2wA3mRmzzOz63OZNVvnSYLL0dgmrEHlqqC77wWcTeof2SvfZRYtjigiq6vcVAWpf/YjwP8xs9ua3mQ1aGoCJPjci9w/Hngr8ErSyr5QnBVUsTCjiEyfmOwMxTLvs8BngfeZ2VVQLMtUwf6tmqksQHPKd+PDcvdDSVcRewVpafjQo1i2vXxRKRGRxcQlH2DutUHWkfpiP2pm18HOy9D2m95cNZ+pLjDzxEMr1Uj2AH6VFCbPIV0wpiwCBYqmriqXdRaRavjAv+MnhuCWbQW+CXwC+JKZ3QU7y59Gd5IvpRWFYv4gO+Xqo7s/Eng2cBJwLKlmstgCjXHwTN1ZhIjsYqmy8WekS15/Gfiamd0Qf8ijq/rTHByhFQESSiv7Up60k6uYjwOOAp5IuoD9YcABwO7A3qz+JSxFpF7uBbYDdwA3AT8EriMtPfJjM9sWd4zWDqa0qWohrQqQsoXCZOA+uwNrgf1JQSIi7bCDFByzZrZpvjvkE88IjamvbcyntQFSVroGe/w4LTuTEJH5lU42o7zsA67yQQGyqHzggN4nkTZymHM5CREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREQH4/6L2ysv9AsN+AAAAAElFTkSuQmCC" alt="" style="width:26px;height:26px"><span class="wordmark">DJEANGO&nbsp;TECH</span></div>
+  <button class="toggle" id="themeBtn" type="button">Light</button>
+</div></div>
+
+<header class="hero"><div class="wrap"><div class="hero-grid">
+  <div>
+    <div class="eyebrow">$ djeango tech &middot; self-hosted ai</div>
+    <h1 data-gumroad-field="name">Own your <span class="o">AI</span>.<br>All of it.</h1>
+    <div class="divider"></div>
+    <p class="subhead">The Self-Hosted LLM Kit: stop renting intelligence. Pick the parts, deploy it anywhere, and build an AI that actually remembers you.</p>
+    <div class="pills">
+      <span class="pill"><b>4 tiers</b>, one path</span>
+      <span class="pill"><b>Every command</b> explained</span>
+      <span class="pill"><b>Real files</b>, not screenshots</span>
+    </div>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="#fitcheck">Check my machine, free</a>
+      <a class="btn btn-ghost" href="#buy">See the kit</a>
+    </div>
+  </div>
+  <div>
+    <div class="term">
+      <div class="term-bar"><span class="tb r"></span><span class="tb y"></span><span class="tb g"></span></div>
+      <div class="term-body">
+<div class="l"><span class="prompt">$</span> ollama run djeango</div>
+<div class="l"><span class="reply">loading your model, on your machine...</span></div>
+<div class="l"><span class="prompt">&gt;&gt;&gt;</span> who owns this AI?</div>
+<div class="l"><span class="payoff">You do. And now it remembers you.</span><span class="cursor"></span></div>
+      </div>
+    </div>
+    <div class="journey">
+      <div class="jline"></div>
+      <div class="jnode"><span class="jbead"></span><span class="jlabel"><b>Pick parts</b>the right hardware</span></div>
+      <div class="jnode"><span class="jbead"></span><span class="jlabel"><b>Deploy anywhere</b>server, Mac, PC</span></div>
+      <div class="jnode"><span class="jbead"></span><span class="jlabel"><b>It remembers you</b>real memory</span></div>
+    </div>
+  </div>
+</div></div>
+<div class="wrap"><div class="statline">
+  <span><b>4</b> tiers, one path</span><i></i>
+  <span><b>100%</b> fact checked</span><i></i>
+  <span><b>$0</b> subscriptions, ever</span><i></i>
+  <span>first run in <b>a weekend</b></span>
+</div></div>
+</header>
+
+<section id="problem" class="tight"><div class="wrap rv">
+  <div class="secnum"><b>01</b> / THE PROBLEM</div>
+  <h2>You already pay for AI every month. You just don't own any of it.</h2>
+  <p class="lead">Every prompt goes to someone else's server. Every limit is theirs to set. Every price change lands on your card. There's another way, and it's more within reach than the long vague videos make it look. You run a capable open model on hardware you choose, keep your data on your own machine, and stop paying rent on intelligence. This kit is the whole path, from picking parts to an assistant that knows you, with every single command explained in plain English.</p>
+  <div class="chartcard rv">
+    <div class="charthead">
+      <div>
+        <div class="eyebrow" style="margin-bottom:6px">The math, honestly</div>
+        <h3 style="margin:0">Cloud subscriptions vs a box you own, over 3 years</h3>
+      </div>
+      <div class="legend">
+        <span><i style="background:#8a8378"></i>One $20/mo subscription</span>
+        <span><i style="background:#d8a24a"></i>Household or team, 3 seats</span>
+        <span><i style="background:var(--orange)"></i>Your own build (The Starter)</span>
+      </div>
+    </div>
+    <svg viewBox="0 0 600 290" role="img" aria-label="Cumulative cost chart: one subscription reaches 720 dollars in 3 years, three subscriptions reach 2160 dollars, your own 600 dollar build plus power reaches about 780 dollars.">
+      <g font-family="IBM Plex Mono,monospace" font-size="11" fill="#8a8378">
+        <line x1="60" y1="250" x2="560" y2="250" stroke="rgba(243,234,217,.14)"/>
+        <line x1="60" y1="149" x2="560" y2="149" stroke="rgba(243,234,217,.07)"/>
+        <line x1="60" y1="48" x2="560" y2="48" stroke="rgba(243,234,217,.07)"/>
+        <text x="52" y="254" text-anchor="end">$0</text>
+        <text x="52" y="153" text-anchor="end">$1k</text>
+        <text x="52" y="52" text-anchor="end">$2k</text>
+        <text x="60" y="272">now</text>
+        <text x="300" y="272" text-anchor="middle">year 1.5</text>
+        <text x="560" y="272" text-anchor="end">year 3</text>
+      </g>
+      <polyline points="60.0,250.0 73.3,243.9 86.7,237.9 100.0,231.8 113.3,225.8 126.7,219.7 140.0,213.7 153.3,207.6 166.7,201.6 180.0,195.5 193.3,189.5 206.7,183.4 220.0,177.3 233.3,171.3 246.7,165.2 260.0,159.2 273.3,153.1 286.7,147.1 300.0,141.0 313.3,135.0 326.7,128.9 340.0,122.9 353.3,116.8 366.7,110.7 380.0,104.7 393.3,98.6 406.7,92.6 420.0,86.5 433.3,80.5 446.7,74.4 460.0,68.4 473.3,62.3 486.7,56.3 500.0,50.2 513.3,44.1 526.7,38.1 540.0,32.0" fill="none" stroke="#d8a24a" stroke-width="2.5" stroke-linecap="round"/>
+      <polyline points="60.0,250.0 73.3,248.0 86.7,246.0 100.0,243.9 113.3,241.9 126.7,239.9 140.0,237.9 153.3,235.9 166.7,233.9 180.0,231.8 193.3,229.8 206.7,227.8 220.0,225.8 233.3,223.8 246.7,221.7 260.0,219.7 273.3,217.7 286.7,215.7 300.0,213.7 313.3,211.7 326.7,209.6 340.0,207.6 353.3,205.6 366.7,203.6 380.0,201.6 393.3,199.5 406.7,197.5 420.0,195.5 433.3,193.5 446.7,191.5 460.0,189.5 473.3,187.4 486.7,185.4 500.0,183.4 513.3,181.4 526.7,179.4 540.0,177.3" fill="none" stroke="#8a8378" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="1 6"/>
+      <polyline points="60.0,189.5 73.3,188.9 86.7,188.4 100.0,187.9 113.3,187.4 126.7,186.9 140.0,186.4 153.3,185.9 166.7,185.4 180.0,184.9 193.3,184.4 206.7,183.9 220.0,183.4 233.3,182.9 246.7,182.4 260.0,181.9 273.3,181.4 286.7,180.9 300.0,180.4 313.3,179.9 326.7,179.4 340.0,178.9 353.3,178.4 366.7,177.8 380.0,177.3 393.3,176.8 406.7,176.3 420.0,175.8 433.3,175.3 446.7,174.8 460.0,174.3 473.3,173.8 486.7,173.3 500.0,172.8 513.3,172.3 526.7,171.8 540.0,171.3" fill="none" stroke="#E8722A" stroke-width="3.5" stroke-linecap="round"/>
+      <g font-family="IBM Plex Mono,monospace" font-size="11.5" font-weight="600">
+        <text x="556" y="26" text-anchor="end" fill="#d8a24a">$2,160 and climbing</text>
+        <text x="556" y="164" text-anchor="end" fill="#8a8378">$720</text>
+        <text x="556" y="200" text-anchor="end" fill="#E8722A">~$780, then it's yours</text>
+      </g>
+      <circle cx="560" cy="48.4" r="4" fill="#d8a24a"/>
+      <circle cx="560" cy="182.8" r="4" fill="#8a8378"/>
+      <circle cx="560" cy="171.6" r="4.5" fill="#E8722A"/>
+    </svg>
+    <p class="chartnote">Straight talk: swapping one $20 subscription is close to break-even on dollars. The win there is privacy and no limits. The money case gets loud when more than one person, or more than one tool, shares the box. Assumes The Starter build ($600) plus about $5 a month in power; the guide teaches you to run these numbers for your own setup.</p>
+  </div>
+</div></section>
+
+<section id="fitcheck"><div class="wrap rv">
+  <div class="secnum"><b>02</b> / START FREE</div>
+  <div class="eyebrow">$ free tool &middot; runs in your browser</div>
+  <h2>The machine you already own is closer than you think.</h2>
+  <p class="lead">Answer six quick questions. Get a fit score, the exact models your hardware can run today, and the single cheapest upgrade that unlocks the next level. Nothing you type leaves this page.</p>
+
+  <div id="fitcheck-app">
+    <div class="bar"><i id="prog"></i></div>
+
+    <div class="card q" id="q1">
+      <div class="qnum">QUESTION 1 OF 6</div>
+      <div class="qtext">What machine would run your AI?</div>
+      <div class="qhelp">The one you'd actually use. If you're shopping for one, pick the last option and we'll point you at the right build.</div>
+      <div class="opts" data-q="device">
+        <button class="opt" data-v="mac">Mac (Apple Silicon: M1, M2, M3, M4...)<small>MacBook, Mac mini, iMac, Mac Studio from 2021 or newer</small><span class="dot2"></span></button>
+        <button class="opt" data-v="pc">Windows or Linux PC / laptop<small>Desktop tower or laptop</small><span class="dot2"></span></button>
+        <button class="opt" data-v="oldmac">Older Intel Mac (2020 or earlier)<small>Pre Apple Silicon</small><span class="dot2"></span></button>
+        <button class="opt" data-v="none">I don't have one yet, I'm planning to buy<small>We'll tell you what to look for</small><span class="dot2"></span></button>
+      </div>
+    </div>
+
+    <div class="card q hidden" id="q2">
+      <div class="qnum">QUESTION 2 OF 6</div>
+      <div class="qtext">How much memory (RAM) does it have?</div>
+      <div class="qhelp">Not sure? On a Mac: Apple menu, About This Mac. On Windows: press Ctrl+Shift+Esc, click Performance, then Memory. It's the number followed by GB.</div>
+      <div class="opts" data-q="ram">
+        <button class="opt" data-v="8">8 GB or less<span class="dot2"></span></button>
+        <button class="opt" data-v="16">16 GB<span class="dot2"></span></button>
+        <button class="opt" data-v="32">32 GB<span class="dot2"></span></button>
+        <button class="opt" data-v="64">64 GB or more<span class="dot2"></span></button>
+        <button class="opt" data-v="unk">I have no idea<small>No problem, we'll assume 16 GB and tell you how to check</small><span class="dot2"></span></button>
+      </div>
+    </div>
+
+    <div class="card q hidden" id="q3">
+      <div class="qnum">QUESTION 3 OF 6</div>
+      <div class="qtext">Does it have a graphics card (GPU)?</div>
+      <div class="qhelp">On Windows: Ctrl+Shift+Esc, Performance tab, look for GPU. "Dedicated GPU memory" is the VRAM number that matters. Gamers usually know this one by heart.</div>
+      <div class="opts" data-q="gpu">
+        <button class="opt" data-v="none">No, or just the built-in graphics<small>Most office laptops. Totally fine, small models still run</small><span class="dot2"></span></button>
+        <button class="opt" data-v="8">NVIDIA with 8 GB VRAM or less<small>RTX 3050, 3060 8GB, 4060, most gaming laptops</small><span class="dot2"></span></button>
+        <button class="opt" data-v="12">NVIDIA with 10-12 GB VRAM<small>RTX 3060 12GB, 3080, 4070</small><span class="dot2"></span></button>
+        <button class="opt" data-v="16">NVIDIA with 16 GB VRAM<small>RTX 4080, 4070 Ti Super, 5080</small><span class="dot2"></span></button>
+        <button class="opt" data-v="24">NVIDIA with 24 GB+ VRAM<small>RTX 3090, 4090, 5090</small><span class="dot2"></span></button>
+        <button class="opt" data-v="amd">AMD graphics card<small>Works with some extra setup, we'll flag it</small><span class="dot2"></span></button>
+      </div>
+    </div>
+
+    <div class="card q hidden" id="q4">
+      <div class="qnum">QUESTION 4 OF 6</div>
+      <div class="qtext">What would you mostly use your AI for?</div>
+      <div class="qhelp">Pick the closest one. Every model can chat; this decides which specialist we recommend.</div>
+      <div class="opts" data-q="use">
+        <button class="opt" data-v="chat">Everyday help: writing, emails, questions, planning<small>The daily-driver setup</small><span class="dot2"></span></button>
+        <button class="opt" data-v="biz">My business: customer questions, documents, paperwork<small>An assistant that knows your files</small><span class="dot2"></span></button>
+        <button class="opt" data-v="create">Content creation: scripts, captions, posts, ideas<small>The content engine</small><span class="dot2"></span></button>
+        <button class="opt" data-v="code">Coding and technical work<small>The developer setup</small><span class="dot2"></span></button>
+      </div>
+    </div>
+
+    <div class="card q hidden" id="q5">
+      <div class="qnum">QUESTION 5 OF 6</div>
+      <div class="qtext">If an upgrade made sense, what's your budget?</div>
+      <div class="qhelp">Be honest, not ambitious. We only recommend the single cheapest thing that actually moves the needle.</div>
+      <div class="opts" data-q="budget">
+        <button class="opt" data-v="0">$0, work with what I've got<span class="dot2"></span></button>
+        <button class="opt" data-v="200">Up to $200<span class="dot2"></span></button>
+        <button class="opt" data-v="700">Up to $700<span class="dot2"></span></button>
+        <button class="opt" data-v="1500">$700 to $1,500+<span class="dot2"></span></button>
+      </div>
+    </div>
+
+    <div class="card q hidden" id="q6">
+      <div class="qnum">QUESTION 6 OF 6</div>
+      <div class="qtext">How comfortable are you with technical setup?</div>
+      <div class="qhelp">There's no wrong answer. The kit was written so a smart beginner can do all of it, this just tunes our advice.</div>
+      <div class="opts" data-q="skill">
+        <button class="opt" data-v="new">Total beginner<small>I've never opened a terminal and that's okay</small><span class="dot2"></span></button>
+        <button class="opt" data-v="some">I can follow instructions carefully<small>I've installed software, maybe dabbled once or twice</small><span class="dot2"></span></button>
+        <button class="opt" data-v="pro">Pretty technical<small>Terminals don't scare me</small><span class="dot2"></span></button>
+      </div>
+      <div class="factions"><button class="btn btn-primary" id="go" disabled>Show my results</button></div>
+    </div>
+
+    <div class="card hidden" id="results">
+      <div class="scorewrap">
+        <div class="ring" id="ring" style="--pct:0"><span id="scoreNum">0</span><small>FIT SCORE</small></div>
+        <div>
+          <div class="verdict" id="verdict"></div>
+          <p class="explain" id="explainTop"></p>
+        </div>
+      </div>
+      <div class="sectionlabel">Models your machine can run today</div>
+      <div id="models"></div>
+      <div class="sidebar" id="speedNote"></div>
+      <div class="sectionlabel">Your cheapest meaningful upgrade</div>
+      <div class="upgrade" id="upgrade"></div>
+      <div class="fccta">
+        <h3>You just did the easy 10%.</h3>
+        <p id="ctaText">The Self-Hosted LLM Kit walks you through the other 90%: picking parts, installing everything step by step, and building an AI that runs your business and your day. Written so you can do it yourself, with every command explained in plain English.</p>
+        <a class="btn btn-primary" href="#buy">See the tiers</a>
+
+        <div class="fcsave">
+          <h4>Want this emailed to you?</h4>
+          <p>We will send your result plus the Local AI Starter Checklist, the twelve decisions worth making before you spend anything. That is the whole email. No sequence, no upsell drip.</p>
+          <form class="fcrow" id="fcForm" novalidate>
+            <input type="email" id="fcEmail" placeholder="you@example.com" autocomplete="email" required aria-label="Email address">
+            <button class="btn btn-ghost" type="submit" id="fcSubmit">Send it</button>
+          </form>
+          <div class="fcnote">Unsubscribe in one click. We do not sell or share your address, ever.</div>
+          <div class="fcmsg" id="fcMsg"></div>
+        </div>
+
+        <div class="fcshare">
+          <div class="lbl">Know someone shopping for a GPU?</div>
+          <div class="row">
+            <button type="button" id="fcCopy">Copy link</button>
+            <a id="fcReddit" href="#" target="_blank" rel="noopener">Share on Reddit</a>
+            <a id="fcX" href="#" target="_blank" rel="noopener">Share on X</a>
+          </div>
+        </div>
+      </div>
+      <div class="factions"><button class="btn btn-ghost" id="again">Start over</button></div>
+      <div class="freestrip" style="margin-top:16px">
+        <div class="fx">
+          <div class="freetag">Keep it, free</div>
+          <p style="margin:6px 0 0; color:var(--body); font-size:14.5px">Want the downloadable Fit Check plus the 12-point Starter Checklist PDF? Get both free on Gumroad, and we'll send updates when the model landscape shifts.</p>
+        </div>
+        <a class="btn btn-ghost" data-gumroad-option="" href="https://djeangodoc.gumroad.com/l/self-hosted-llm-homelab-guide">Download free</a>
+      </div>
+      <p class="fcfine">Estimates based on the July 2026 open-model landscape and typical quantized (compressed) model sizes. Your results run entirely in your browser; nothing is uploaded or stored. Model availability changes fast, which is why kit buyers get updates.</p>
+    </div>
+  </div>
+</div></section>
+
+<section id="guide"><div class="wrap rv">
+  <div class="secnum"><b>03</b> / THE KIT, TIER BY TIER</div>
+  <h2>One kit. Four stops. Get off wherever you like.</h2>
+  <p class="lead">Slide through what each tier actually hands you. Every tier includes everything before it.</p>
+
+  <div class="slider" id="tierSlider">
+    <div class="strack" id="strack">
+
+      <div class="slide">
+        <div class="bookmock">
+          <div class="bm-brand">D J E A N G O &nbsp; T E C H</div>
+          <div><div class="bm-tier">Builder &middot; $29</div><div class="bm-title">The Part Picker Guide</div></div>
+          <div class="bm-sub">Pick the right hardware for your own AI, at the right price, the first time. 2026 edition.</div>
+        </div>
+        <div class="scontent">
+          <div class="tier">Builder &middot; three guides, 32 pages</div>
+          <h3>Pays for itself before you spend a dollar on hardware.</h3>
+          <ul class="promo-list">
+            <li>The VRAM math, taught so you can run it yourself</li>
+            <li>Three named builds: The Starter, The Workhorse, The Beast</li>
+            <li>The used-market playbook, what to buy and what to check</li>
+            <li>First Run: parts to first local AI answer in about 30 minutes</li>
+            <li>Running costs and safe model sources, the two things nobody covers</li>
+          </ul>
+          <div class="gprice"><span class="gnow">$29</span><span class="glaunch">Launch price</span><span class="gnote">Yours alone, no bundle required.</span></div>
+          <div class="cta-row"><a class="btn btn-primary" data-gumroad-option="" href="https://djeangodoc.gumroad.com/l/self-hosted-llm-homelab-guide">Get the guide</a></div>
+        </div>
+      </div>
+
+      <div class="slide">
+        <div class="tilemock"><div class="tm-num">02</div><div class="tm-name">Operator</div><div class="tm-tag">Deploy it. Put it to work.</div><div class="tm-art">$ ssh you@your-ai<br>&gt; provision &gt; harden &gt; serve</div></div>
+        <div class="scontent">
+          <div class="tier">Operator &middot; $59</div>
+          <h3>Your AI on a cheap server, working three ways.</h3>
+          <ul class="promo-list">
+            <li>VPS Deploy Playbook: provision, harden, serve</li>
+            <li>Copy-paste config pack: real files, not screenshots</li>
+            <li>The Business Operator: an assistant on your own docs</li>
+            <li>The Daily Driver and The Creator Engine builds</li>
+          </ul>
+          <div class="gprice"><span class="gnow">$59</span><span class="glaunch">Launch price</span><span class="gnote">Everything in Builder included.</span></div>
+          <div class="cta-row"><a class="btn btn-primary" data-gumroad-option="" href="https://djeangodoc.gumroad.com/l/self-hosted-llm-homelab-guide">Get Operator</a></div>
+        </div>
+      </div>
+
+      <div class="slide">
+        <div class="tilemock"><div class="tm-num">03</div><div class="tm-name">Architect</div><div class="tm-tag">Run it everywhere, in sync.</div><div class="tm-art">server &harr; mac &harr; pc<br>one AI, every machine</div></div>
+        <div class="scontent">
+          <div class="tier">Architect &middot; $99</div>
+          <h3>Server, Mac, and PC. One AI, everywhere you sit.</h3>
+          <ul class="promo-list">
+            <li>Mac Playbook: Apple Silicon and MLX, done right</li>
+            <li>PC Playbook: NVIDIA setup without the guesswork</li>
+            <li>Sync Strategy: same assistant on every machine</li>
+            <li>Tuning guide plus a fill-in benchmark sheet</li>
+          </ul>
+          <div class="gprice"><span class="gnow">$99</span><span class="glaunch">Launch price</span><span class="gnote">Everything in Operator included.</span></div>
+          <div class="cta-row"><a class="btn btn-primary" data-gumroad-option="" href="https://djeangodoc.gumroad.com/l/self-hosted-llm-homelab-guide">Get Architect</a></div>
+        </div>
+      </div>
+
+      <div class="slide">
+        <div class="tilemock feature"><div class="tm-num">04</div><div class="tm-name">The Full Stack</div><div class="tm-tag">Dashboard. Memory. An assistant that runs your day.</div><div class="tm-art">&gt;&gt;&gt; who owns this AI?<br>You do. And it remembers you.</div></div>
+        <div class="scontent">
+          <div class="tier">The Full Stack &middot; $149</div>
+          <h3>The complete build. It knows you, and it's yours.</h3>
+          <ul class="promo-list">
+            <li>Live Dashboard Kit, self-hosted status at a glance</li>
+            <li>Memory Build-Out Kit: your docs, your days, recalled</li>
+            <li>The Assistant Blueprint: one AI that runs your day</li>
+            <li>Free updates for life</li>
+          </ul>
+          <div class="gprice"><span class="gnow">$149</span><span class="glaunch">Launch price</span><span class="gnote">Everything in Architect included.</span></div>
+          <div class="cta-row"><a class="btn btn-primary" data-gumroad-option="" href="https://djeangodoc.gumroad.com/l/self-hosted-llm-homelab-guide">Get The Full Stack</a></div>
+        </div>
+      </div>
+
+    </div>
+    <div class="snav">
+      <button class="sarrow" id="sprev" aria-label="Previous tier">&larr;</button>
+      <div class="sdots" id="sdots"><button class="sdot on" data-i="0"></button><button class="sdot" data-i="1"></button><button class="sdot" data-i="2"></button><button class="sdot" data-i="3"></button></div>
+      <button class="sarrow" id="snext" aria-label="Next tier">&rarr;</button>
+    </div>
+  </div>
+</div></section>
+
+<section id="buy"><div class="wrap rv">
+  <div class="secnum"><b>04</b> / GO FURTHER</div>
+  <div class="eyebrow">Pick your tier</div>
+  <h2>Start where you are. Own the whole path.</h2>
+  <p class="lead">Each tier includes everything before it and adds one real new capability. Start where you are, upgrade when you're ready.</p>
+
+  <div class="prices">
+    <div class="pcard">
+      <div class="tier">Builder</div>
+      <div class="price">$29 <span class="glaunch">Launch price</span></div>
+      <div class="ptag">Pick the right parts and run your first local model.</div>
+      <ul class="plist">
+        <li>The Part Picker Guide, refreshed for 2026</li>
+        <li>Model Picker Matrix by hardware class</li>
+        <li>Three named builds: $600, $1,200, $2,500</li>
+        <li>First Run quick-start with Ollama</li>
+            <li>Running Costs and Safe Sources guide</li>
+            <li>The Fit Check tool and Starter Checklist included</li>
+      </ul>
+      <a class="btn btn-ghost" data-gumroad-option="" href="https://djeangodoc.gumroad.com/l/self-hosted-llm-homelab-guide">Get Builder</a>
+    </div>
+
+    <div class="pcard feature">
+      <span class="badge">Most popular</span>
+      <div class="tier">Operator</div>
+      <div class="price">$59 <span class="glaunch">Launch price</span></div>
+      <div class="ptag">Deploy your AI on a server and put it to work three ways.</div>
+      <ul class="plist">
+        <li>Everything in Builder</li>
+        <li>VPS Deploy Playbook, provision to serve</li>
+        <li>Copy-paste config pack, real files</li>
+        <li>Three Use Builds: Business, Daily, Creator</li>
+      </ul>
+      <a class="btn btn-primary" data-gumroad-option="" href="https://djeangodoc.gumroad.com/l/self-hosted-llm-homelab-guide">Get Operator</a>
+    </div>
+
+    <div class="pcard">
+      <div class="tier">Architect</div>
+      <div class="price">$99 <span class="glaunch">Launch price</span></div>
+      <div class="ptag">Run it everywhere: server, Mac, and PC, in sync.</div>
+      <ul class="plist">
+        <li>Everything in Operator</li>
+        <li>Mac Playbook, Apple Silicon and MLX</li>
+        <li>PC Playbook, NVIDIA done right</li>
+        <li>Sync Strategy + fill-in benchmark sheet</li>
+      </ul>
+      <a class="btn btn-ghost" data-gumroad-option="" href="https://djeangodoc.gumroad.com/l/self-hosted-llm-homelab-guide">Get Architect</a>
+    </div>
+
+    <div class="pcard feature">
+      <span class="badge alt">Best value</span>
+      <div class="tier">The Full Stack</div>
+      <div class="price">$149 <span class="glaunch">Launch price</span></div>
+      <div class="ptag">The complete build: dashboard, memory, one assistant that runs your day.</div>
+      <ul class="plist">
+        <li>Everything in Architect</li>
+        <li>Live Dashboard Kit, self-hosted</li>
+        <li>Memory Build-Out Kit, it knows you</li>
+        <li>The Assistant Blueprint + free updates for life</li>
+      </ul>
+      <a class="btn btn-primary" data-gumroad-option="" href="https://djeangodoc.gumroad.com/l/self-hosted-llm-homelab-guide">Get The Full Stack</a>
+    </div>
+  </div>
+</div></section>
+
+<section id="inside" class="tight"><div class="wrap rv">
+  <div class="secnum"><b>05</b> / WHAT MAKES IT DIFFERENT</div>
+  <h2>Not another vague YouTube video.</h2>
+  <div class="fgrid">
+    <div class="fcell"><div class="fnum">01</div><h3>Every command, explained three ways</h3><p>What it does, what you should see when it works, and what to do if you don't. If a step says open your terminal, we show you how on Mac and Windows.</p></div>
+    <div class="fcell"><div class="fnum">02</div><h3>Written from a real deployment</h3><p>The deploy playbook follows an actual build on a live server, not a theory. Where a step depends on your provider or hardware, the guide says so instead of pretending.</p></div>
+    <div class="fcell"><div class="fnum">03</div><h3>Real files, not screenshots</h3><p>Copy-paste docker-compose, systemd services, config packs, and prompt packs. You run them, you don't retype them.</p></div>
+    <div class="fcell"><div class="fnum">04</div><h3>Memory that makes it yours</h3><p>The top tier moves you from a chatbot to an assistant that remembers your documents and your days, with the vector database set up for you.</p></div>
+  </div>
+</div></section>
+
+<section id="builtfor" class="tight"><div class="wrap rv">
+  <div class="secnum"><b>06</b> / BUILT FOR</div>
+  <h2>Do it yourself, or hand it to your gifted nephew.</h2>
+  <div class="persona">
+    <div class="pc"><h3>Real estate agents</h3><p>A private assistant that drafts listings and answers from your own paperwork, without sending client data to anyone.</p></div>
+    <div class="pc"><h3>Content creators</h3><p>Turn one long video into a week of shorts, batch your hooks, and never hit a monthly usage cap again.</p></div>
+    <div class="pc"><h3>Small businesses</h3><p>An operator that reads your docs, drafts your replies, and runs on a server that costs less than one subscription seat.</p></div>
+  </div>
+</div></section>
+
+<section id="faq" class="tight"><div class="wrap rv">
+  <div class="secnum"><b>07</b> / HONEST ANSWERS</div>
+  <h2>The questions you're actually asking.</h2>
+  <div class="faq">
+    <div class="qa"><h3>Do I need to be technical?</h3><p>No. If you can follow a recipe, you can do this. Every command has plain-English lines around it, and there are no assumed steps. Plenty of buyers hand it to a friend who tinkers.</p></div>
+    <div class="qa"><h3>Will this really save me money?</h3><p>It depends on how you use it, and the guide is honest about that. Swapping one subscription is close to break-even on dollars, and the win is privacy and no limits. The real savings show up when more than one person shares the box.</p></div>
+    <div class="qa"><h3>Which tier should I buy?</h3><p>Start where you are. If you've never run a model, Builder. If you want it online and working, Operator. If you want it on every machine, Architect. If you want the whole thing with memory, The Full Stack. Each tier upgrades cleanly into the next.</p></div>
+    <div class="qa"><h3>What if the models and prices change?</h3><p>They will, fast. That's why the guides carry verify-before-you-buy notes, and why paid tiers get refreshed. The Full Stack gets free updates for life.</p></div>
+    <div class="qa"><h3>Is my hardware good enough?</h3><p>Run the free Fit Check and find out in two minutes before you spend a dollar. It even tells you the single cheapest upgrade that unlocks a bigger model.</p></div>
+  </div>
+</div></section>
+
+<section><div class="wrap"><div class="final">
+  <h2>Own the model. Own the memory. Own the machine.</h2>
+  <p class="lead" style="margin:0 auto 22px">Pick the step you're on and start today. You can upgrade to the next tier whenever you're ready, and your files are always in your Gumroad library.</p>
+  <div class="cta-row" style="justify-content:center">
+    <a class="btn btn-primary" href="#buy">See the tiers</a>
+    <a class="btn btn-ghost" href="#fitcheck">Run the free Fit Check</a>
+  </div>
+</div></div></section>
+
+<footer class="fine"><div class="wrap">
+  <p>Djeango Tech. Digital products for people who'd rather own their tools than rent them. All sales are for digital downloads. Because these are instant-access digital files, all sales are final, but if something's wrong, reply to your receipt and we'll make it right.</p>
+  <p>Prices in USD. These are launch prices and will rise once the launch window closes; buy now and every future update to your tier stays free.</p>
+</div></footer>
+
+<div id="buybar"><div class="wrap">
+  <div class="bt"><b>The Self-Hosted LLM Kit</b> &nbsp; Builder $29 to Full Stack $149</div>
+  <a class="btn btn-primary" href="#buy">Pick your tier</a>
+</div></div>
+
+<script>
+  (function(){
+    document.body.classList.remove('no-js');
+    document.body.classList.add('js');
+    var btn = document.getElementById('themeBtn');
+    if(btn){ btn.addEventListener('click', function(){
+      var light = document.body.classList.toggle('light');
+      btn.textContent = light ? 'Dark' : 'Light';
+    });}
+    var bar = document.getElementById('buybar');
+    var hero = document.querySelector('.hero');
+    if(bar && hero && 'IntersectionObserver' in window){
+      var io = new IntersectionObserver(function(e){
+        bar.classList.toggle('show', !e[0].isIntersecting);
+      }, {threshold:0});
+      io.observe(hero);
+    }
+    if('IntersectionObserver' in window){
+      var rio = new IntersectionObserver(function(entries){
+        entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('vis'); rio.unobserve(en.target); } });
+      }, {threshold:.12});
+      document.querySelectorAll('.rv').forEach(function(el){ rio.observe(el); });
+    }
+    var track = document.getElementById('strack');
+    if(track){
+      var idx = 0, n = track.children.length;
+      function goTo(i){
+        idx = (i+n)%n;
+        track.style.transform = 'translateX(-'+(idx*100)+'%)';
+        document.querySelectorAll('.sdot').forEach(function(d,k){ d.classList.toggle('on', k===idx); });
+      }
+      var pv=document.getElementById('sprev'), nx=document.getElementById('snext');
+      if(pv) pv.addEventListener('click', function(){ goTo(idx-1); });
+      if(nx) nx.addEventListener('click', function(){ goTo(idx+1); });
+      document.querySelectorAll('.sdot').forEach(function(d){
+        d.addEventListener('click', function(){ goTo(parseInt(d.getAttribute('data-i'),10)); });
+      });
+    }
+  })();
+</script>
+
+<script>
+(function(){
+  var ans = {device:null, ram:null, gpu:null, use:null, budget:null, skill:null};
+  var order = ["q1","q2","q3","q4","q5","q6"];
+  var qmap = {device:"q1", ram:"q2", gpu:"q3", use:"q4", budget:"q5", skill:"q6"};
+
+  document.querySelectorAll("#fitcheck-app .opts").forEach(function(grid){
+    grid.addEventListener("click", function(e){
+      var btn = e.target.closest(".opt"); if(!btn) return;
+      grid.querySelectorAll(".opt").forEach(function(o){o.classList.remove("sel");});
+      btn.classList.add("sel");
+      var key = grid.getAttribute("data-q");
+      ans[key] = btn.getAttribute("data-v");
+      if(key === "device"){
+        var skipGpu = (ans.device === "mac" || ans.device === "none");
+        document.getElementById("q3").setAttribute("data-skip", skipGpu ? "1" : "0");
+        if(skipGpu) ans.gpu = "skip";
+        else if(ans.gpu === "skip") ans.gpu = null;
+      }
+      reveal(); progress();
+    });
+  });
+
+  function reveal(){
+    var shown = 1;
+    for(var i=0;i<order.length;i++){
+      var id = order[i], el = document.getElementById(id);
+      var key = Object.keys(qmap).filter(function(k){return qmap[k]===id;})[0];
+      if(el.getAttribute("data-skip")==="1"){ el.classList.add("hidden"); continue; }
+      if(shown){ el.classList.remove("hidden"); } else { el.classList.add("hidden"); }
+      if(ans[key]===null) shown = 0;
+    }
+    var done = Object.keys(ans).every(function(k){return ans[k]!==null;});
+    document.getElementById("go").disabled = !done;
+  }
+  function progress(){
+    var n = Object.keys(ans).filter(function(k){return ans[k]!==null;}).length;
+    document.getElementById("prog").style.width = Math.round(n/6*100)+"%";
+  }
+
+  var CATALOG = [
+    {name:"Llama 3.2 3B", pull:"ollama pull llama3.2:3b", need:3, tags:["chat","create","biz"], why:"The friendly starter. Fast on almost anything, great for drafts, emails, and everyday questions."},
+    {name:"Qwen3 8B", pull:"ollama pull qwen3:8b", need:6, tags:["chat","code","create","biz"], why:"The best small all-rounder right now. Chat, writing, and solid code help in one model."},
+    {name:"DeepSeek-R1 7B", pull:"ollama pull deepseek-r1:7b", need:5, tags:["code","biz"], why:"Thinks before it answers. Slower, but noticeably sharper on logic, math, and tricky questions."},
+    {name:"Gemma 4 E4B (vision)", pull:"ollama pull gemma4:e4b", need:6, tags:["create","biz","chat"], why:"Sees images too. Show it a photo, a screenshot, or a document and ask questions about it."},
+    {name:"Gemma 4 12B", pull:"ollama pull gemma4:12b", need:10, tags:["chat","create","biz"], why:"A big step up in writing quality and reasoning while staying mid-size."},
+    {name:"gpt-oss 20B", pull:"ollama pull gpt-oss:20b", need:14, tags:["chat","biz","code"], why:"Adjustable reasoning at roughly o3-mini level. Serious capability in 16 GB."},
+    {name:"Devstral Small 24B", pull:"ollama pull devstral:24b", need:16, tags:["code"], why:"Built for real coding work: multi-file edits and debugging, not just snippets."},
+    {name:"Qwen3 30B", pull:"ollama pull qwen3:30b", need:18, tags:["chat","create","biz"], why:"Balanced heavyweight for people who want near-frontier answers at home."},
+    {name:"Qwen 3.6 27B", pull:"ollama pull qwen3.6:27b", need:22, tags:["code","chat","biz","create"], why:"The current king of consumer hardware. Frontier-class coding and reasoning in 24 GB."},
+    {name:"Qwen3-Coder 30B-A3B", pull:"ollama pull qwen3-coder:30b", need:19, tags:["code"], why:"The dedicated coding specialist for serious projects."},
+    {name:"Llama 4 Scout", pull:"ollama pull llama4:scout", need:50, tags:["chat","biz","create","code"], why:"10-million-token context. Feed it entire books or your whole document archive."}
+  ];
+
+  function effectiveMemory(){
+    var ram = ans.ram==="unk" ? 16 : parseInt(ans.ram,10);
+    if(ans.device==="mac"){ return {mem: Math.round(ram*0.7), kind:"unified", ram:ram}; }
+    if(ans.device==="none"){ return {mem: 0, kind:"none", ram:ram}; }
+    if(ans.gpu==="none"||ans.gpu==="skip"||ans.gpu==="amd"){ return {mem: Math.round(ram*0.5), kind:(ans.gpu==="amd"?"amd":"cpu"), ram:ram}; }
+    return {mem: parseInt(ans.gpu,10), kind:"gpu", ram:ram};
+  }
+
+  function computeScore(m){
+    var s;
+    if(m.mem>=40) s=96; else if(m.mem>=22) s=90; else if(m.mem>=16) s=82;
+    else if(m.mem>=10) s=72; else if(m.mem>=6) s=60; else if(m.mem>=3) s=42; else s=15;
+    if(m.kind==="cpu") s-=12;
+    if(m.kind==="amd") s-=6;
+    if(ans.device==="oldmac") s-=10;
+    if(ans.use==="code" && m.mem<16) s-=5;
+    return Math.max(5, Math.min(98, s));
+  }
+
+  function pickModels(m){
+    var runnable = CATALOG.filter(function(x){return x.need<=m.mem;});
+    runnable.sort(function(a,b){
+      var am=a.tags.indexOf(ans.use)>=0?1:0, bm=b.tags.indexOf(ans.use)>=0?1:0;
+      if(am!==bm) return bm-am;
+      return b.need-a.need;
+    });
+    return runnable.slice(0,4);
+  }
+
+  function upgradeAdvice(m){
+    var b = parseInt(ans.budget,10);
+    if(ans.device==="none"){
+      return "<b>Don't buy anything yet.</b> The Builder tier of the kit has three named builds with exact part lists: The Starter (~$600), The Workhorse (~$1,200), and The Beast (~$2,500). Ten minutes of reading will save you from the two most common overspends: paying for CPU cores AI doesn't use, and buying a GPU with too little VRAM.";
+    }
+    if(ans.device==="mac"){
+      if(m.ram>=32) return "<b>Nothing. Seriously.</b> Apple Silicon with "+m.ram+" GB of unified memory is one of the best local-AI machines you can own. Your upgrade isn't hardware, it's setup: the Architect tier's Mac playbook squeezes everything out of what you already have.";
+      return "<b>Mac memory can't be upgraded after purchase</b>, so the honest answer is: run the right-size models now, and if you outgrow them, the Operator tier shows you how to rent a small server (about the price of two coffees a month) that runs bigger models for any device you own, including this Mac. When you do buy your next Mac, make it 32 GB+.";
+    }
+    if(ans.device==="oldmac"){
+      return "<b>Don't put money into an Intel Mac for AI.</b> It'll run small models for light use, and that's fine. If you're ready for more, the smart moves are either the Operator tier (your AI on a cheap rented server, works from any device) or the Builder tier's guide before you buy new hardware.";
+    }
+    if(m.kind==="cpu"||m.kind==="amd"){
+      if(b>=200) return "<b>A used NVIDIA RTX 3060 12 GB (about $200-250 used)</b> is the classic first upgrade: two full tiers up, from starter models to the 10-12 GB class, fast. It's also the last genuinely cheap AI card on the market. The Builder guide shows exactly what to check when buying used.";
+      if(m.ram<=8) return "<b>Cheapest first step: more RAM.</b> Moving from 8 to 32 GB (roughly $60-90) lets you run mid-size models on CPU. Slower than a GPU, but capable. When you have ~$225 later, a used RTX 3060 12 GB is the real unlock.";
+      return "<b>Save toward a used NVIDIA RTX 3060 12 GB (~$225).</b> Until then, your CPU can run the starter models today: slower, but real. The kit's tuning chapter shows how to get the most speed out of CPU-only setups.";
+    }
+    if(m.mem<=8){
+      if(b>=700) return "<b>Two real options near $500-600:</b> a used RTX 4070 Super (~$520-540) doubles your speed at 12 GB, or a used 16 GB RTX A4000 (~$500) trades speed for room to run bigger models. Honest truth about the big jump: a used RTX 3090 (24 GB) now runs about $1,000-1,100.";
+      return "<b>You're in a solid spot.</b> The next real jump needs 24 GB of VRAM, and used RTX 3090s now run about $1,000-1,100 since the AI boom. Until then, run the 6-8 GB class fast and let the kit's tuning chapter buy you free performance.";
+    }
+    if(m.mem<=16){
+      if(b>=700) return "<b>Honest answer: skip it.</b> The 24 GB club (used RTX 3090) now costs about $1,000-1,100, and your card already runs excellent models. Save the money, or put it toward running bigger models on a rented server instead.";
+      return "<b>Nothing urgent.</b> Your card already runs seriously capable models. The jump to a 24 GB card is a want, not a need. Spend $0 and put your energy into the setup instead.";
+    }
+    return "<b>You don't need an upgrade, you need a mission.</b> Your hardware runs the best open models available. The Full Stack tier (dashboard + memory + one assistant that runs your day) is built for exactly your machine.";
+  }
+
+  function verdictFor(s){
+    if(s>=80) return {t:"Excellent fit", c:"good"};
+    if(s>=60) return {t:"Good fit", c:"ok"};
+    if(s>=40) return {t:"Workable fit", c:"ok"};
+    return {t:"Starter fit", c:"warn"};
+  }
+
+  function explainTop(m, s){
+    var bits = [];
+    if(ans.device==="mac") bits.push("Apple Silicon shares its "+m.ram+" GB of memory between everything, and models can use a big slice of it. That's why Macs punch above their weight here.");
+    else if(m.kind==="gpu") bits.push("Your graphics card's "+m.mem+" GB of VRAM is the number that matters most, and it's what these picks are sized to.");
+    else if(m.kind==="cpu") bits.push("No dedicated GPU means your AI runs on the processor: everything works, just at a relaxed reading pace instead of instant.");
+    else if(m.kind==="amd") bits.push("AMD cards can absolutely run local AI, they just need one extra setup step that the kit walks you through.");
+    else if(ans.device==="none") bits.push("No machine yet is honestly the best position: you get to buy the right thing the first time.");
+    if(ans.device==="oldmac") bits.push("Intel Macs run small models fine for light use, but they miss the unified-memory advantage of newer Macs.");
+    if(ans.ram==="unk") bits.push("We assumed 16 GB of RAM. Check the real number (instructions were under question 2) and re-run for a sharper answer.");
+    if(ans.skill==="new") bits.push("And since you marked yourself a beginner: everything below is achievable. The kit assumes zero experience on purpose.");
+    return bits.join(" ");
+  }
+
+  function speedNote(m){
+    if(ans.device==="none") return "<b>Buying tip:</b> for local AI, memory beats speed. A mid CPU with lots of RAM and a 12 GB+ GPU beats a fast CPU with a small GPU every time.";
+    if(m.kind==="cpu") return "<b>What CPU-only feels like:</b> answers appear at about the speed a person types, rather than instantly. Fine for drafts and questions, frustrating for long documents. A GPU (or the Operator tier's rented-server route) is what removes the wait.";
+    if(m.kind==="amd") return "<b>About AMD:</b> Ollama supports many AMD cards through ROCm, it's just less plug-and-play than NVIDIA. The kit's PC playbook has the exact steps and a compatibility check.";
+    if(ans.device==="mac") return "<b>Mac tip:</b> close memory-hungry apps (looking at you, 40 browser tabs) before running bigger models. On a Mac, your AI and your apps share the same memory pool.";
+    return "<b>Speed check:</b> models that fit inside your VRAM with room to spare run fast. The last model on your list is the ceiling; the first ones will feel instant.";
+  }
+
+  var goBtn = document.getElementById("go");
+  if(goBtn) goBtn.addEventListener("click", function(){
+    var m = effectiveMemory();
+    var s = computeScore(m);
+    var v = verdictFor(s);
+    if(ans.device==="none"){ s = 100; v = {t:"Clean slate, best position", c:"good"}; }
+    order.forEach(function(id){document.getElementById(id).classList.add("hidden");});
+    var res = document.getElementById("results");
+    res.classList.remove("hidden");
+    document.getElementById("ring").style.setProperty("--pct", s);
+    document.getElementById("scoreNum").textContent = (ans.device==="none" ? "100" : s);
+    var vd = document.getElementById("verdict"); vd.textContent = v.t; vd.className = "verdict "+v.c;
+    document.getElementById("explainTop").textContent = explainTop(m, s);
+
+    var list = pickModels(m), html = "";
+    if(ans.device==="none"){
+      html = '<div class="model"><div><b>Pick your parts first</b><div class="why">Once you know your build, every model tier below roughly $2,500 is on the table. The Builder guide maps models to each of its three named builds.</div></div></div>';
+    } else if(list.length===0){
+      html = '<div class="model"><div><b>Llama 3.2 1B</b><div class="why">The tiniest capable model. It will run, and it proves the concept, but this machine is at the floor. Read the upgrade advice below.</div></div><code class="pull">ollama pull llama3.2:1b</code></div>';
+    } else {
+      list.forEach(function(x){
+        html += '<div class="model"><div><b>'+x.name+'</b><div class="why">'+x.why+'</div></div><code class="pull">'+x.pull+'</code></div>';
+      });
+    }
+    document.getElementById("models").innerHTML = html;
+    document.getElementById("speedNote").innerHTML = speedNote(m);
+    document.getElementById("upgrade").innerHTML = upgradeAdvice(m);
+
+    var cta = document.getElementById("ctaText");
+    if(ans.use==="biz") cta.textContent = "The Self-Hosted LLM Kit's Business Operator build turns this into an assistant that knows your documents, drafts your replies, and never sends your customer data to anyone's cloud. Every command explained in plain English.";
+    else if(ans.use==="create") cta.textContent = "The Self-Hosted LLM Kit's Creator Engine build turns this into your content pipeline: hooks, scripts, captions, repurposing, all running on your own machine. Every command explained in plain English.";
+    else if(ans.use==="code") cta.textContent = "The Self-Hosted LLM Kit takes you from this score to a tuned coding setup, including the configs, the model choices per task, and an assistant that remembers your projects.";
+    var fcTop = document.getElementById("fitcheck");
+    if(fcTop) fcTop.scrollIntoView({behavior:"smooth"});
+  });
+
+  var againBtn = document.getElementById("again");
+  if(againBtn) againBtn.addEventListener("click", function(){
+    Object.keys(ans).forEach(function(k){ans[k]=null;});
+    document.querySelectorAll("#fitcheck-app .opt").forEach(function(o){o.classList.remove("sel");});
+    document.getElementById("q3").setAttribute("data-skip","0");
+    document.getElementById("results").classList.add("hidden");
+    document.getElementById("q1").classList.remove("hidden");
+    for(var i=1;i<order.length;i++) document.getElementById(order[i]).classList.add("hidden");
+    document.getElementById("prog").style.width = "0";
+    var fcTop = document.getElementById("fitcheck");
+    if(fcTop) fcTop.scrollIntoView({behavior:"smooth"});
+  });
+})();
+
+(function(){
+  var KIT_FORM="9689272", HOSTED="https://djeango-tech.kit.com/4d20c4bd34";
+  var f=document.getElementById('fcForm');
+  if(f){f.addEventListener('submit',function(e){
+    e.preventDefault();
+    var email=(document.getElementById('fcEmail').value||'').trim();
+    var msg=document.getElementById('fcMsg'), btn=document.getElementById('fcSubmit');
+    if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){
+      msg.style.display='block'; msg.textContent='That email does not look right. Check it and try again.'; return;}
+    btn.disabled=true; btn.textContent='Sending';
+    var fd=new FormData(); fd.append('email_address',email);
+    fetch('https://app.kit.com/forms/'+KIT_FORM+'/subscriptions',{method:'POST',body:fd})
+      .then(function(r){return r.ok?r:Promise.reject();})
+      .then(function(){f.style.display='none'; msg.style.display='block';
+        msg.textContent='Sent. Check your inbox, and your spam folder if it is not there in a minute.';})
+      .catch(function(){msg.style.display='block';
+        msg.innerHTML='Could not send from here. <a style="color:var(--accent)" href="'+HOSTED+'" target="_blank" rel="noopener">Use this form instead</a>.';
+        btn.disabled=false; btn.textContent='Send it';});
+  });}
+  var url='https://kit.djeango.com/';
+  var title='Free tool: find out which local AI models your machine can actually run';
+  var r=document.getElementById('fcReddit');
+  if(r) r.href='https://www.reddit.com/submit?url='+encodeURIComponent(url)+'&title='+encodeURIComponent(title);
+  var x=document.getElementById('fcX');
+  if(x) x.href='https://twitter.com/intent/tweet?url='+encodeURIComponent(url)+'&text='+encodeURIComponent(title);
+  var cp=document.getElementById('fcCopy');
+  if(cp) cp.addEventListener('click',function(){navigator.clipboard.writeText(url).then(function(){
+    var t=cp.textContent; cp.textContent='Copied'; setTimeout(function(){cp.textContent=t;},1800);});});
+})();
+</script>
+
+</body>
+</html>
