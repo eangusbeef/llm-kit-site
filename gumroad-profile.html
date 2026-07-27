@@ -1,0 +1,168 @@
+<div id="djeango-store">
+<style>
+#djeango-store{--bg:#0F0E0C;--surface:#17150F;--surface2:#1F1B13;--border:#332C20;--line:#241F17;
+--text:#F3EAD9;--body:#CDC6B8;--muted:#857E70;--accent:#E8722A;--accent2:#FF8A45;
+background:var(--bg);color:var(--body);font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+margin:0;padding:0;line-height:1.6;-webkit-font-smoothing:antialiased}
+#djeango-store *{box-sizing:border-box}
+#djeango-store .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+#djeango-store a{color:inherit;text-decoration:none}
+#djeango-store h1,#djeango-store h2,#djeango-store h3{margin:0;color:var(--text);font-weight:800;letter-spacing:.01em;line-height:1.1}
+#djeango-store .eyebrow{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+#djeango-store .rule{width:64px;height:3px;background:var(--accent);margin:18px 0 22px}
+
+#djeango-store .head{padding:64px 0 40px;text-align:center;border-bottom:1px solid var(--line)}
+#djeango-store .mark{width:74px;height:74px;margin:0 auto 18px;display:block}
+#djeango-store .brand{font-size:13px;letter-spacing:.34em;text-transform:uppercase;color:var(--accent);margin-bottom:22px}
+#djeango-store .head h1{font-size:clamp(30px,5vw,46px);text-transform:uppercase}
+#djeango-store .head p{max-width:620px;margin:18px auto 0;color:var(--body);font-size:17px}
+
+#djeango-store .sec{padding:60px 0 10px}
+#djeango-store .sec h2{font-size:clamp(24px,3.6vw,34px);text-transform:uppercase}
+#djeango-store .lede{color:var(--body);font-size:16px;max-width:720px;margin:14px 0 30px}
+
+#djeango-store .hero{background:var(--surface);border:1px solid var(--border);border-left:4px solid var(--accent);padding:34px 30px;margin-bottom:26px}
+#djeango-store .hero h3{font-size:clamp(22px,3.2vw,30px);text-transform:uppercase}
+#djeango-store .hero p{margin:14px 0 0;color:var(--body)}
+#djeango-store .stats{display:flex;flex-wrap:wrap;gap:26px;margin-top:24px;padding-top:22px;border-top:1px solid var(--line)}
+#djeango-store .stat b{display:block;color:var(--text);font-size:17px}
+#djeango-store .stat span{font-size:12.5px;color:var(--muted)}
+
+#djeango-store .tier{display:flex;flex-wrap:wrap;align-items:center;gap:16px;
+padding:18px 22px;border:1px solid var(--border);border-top:none;background:var(--bg)}
+#djeango-store .tier:first-of-type{border-top:1px solid var(--border)}
+#djeango-store .tier:nth-child(even){background:var(--surface)}
+#djeango-store .tier .nm{flex:0 0 130px;color:var(--text);font-weight:800;text-transform:uppercase;letter-spacing:.05em}
+#djeango-store .tier .pr{flex:0 0 78px;color:var(--accent);font-weight:800;font-size:20px}
+#djeango-store .tier .ds{flex:1 1 320px;min-width:220px;font-size:14.5px}
+#djeango-store .tier .ds b{color:var(--text);display:block;font-size:15.5px}
+#djeango-store .btn{display:inline-block;padding:10px 18px;border:1px solid var(--accent);color:var(--accent);
+font-size:12.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;transition:.18s}
+#djeango-store .btn:hover{background:var(--accent);color:#12100C}
+#djeango-store .btn.solid{background:var(--accent);color:#12100C}
+#djeango-store .btn.solid:hover{background:var(--accent2);border-color:var(--accent2)}
+#djeango-store .note{font-size:13.5px;color:var(--muted);margin-top:16px}
+
+#djeango-store .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:18px;margin-top:8px}
+#djeango-store .card{background:var(--surface);border:1px solid var(--border);padding:26px 24px;display:flex;flex-direction:column}
+#djeango-store .card .tag{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+#djeango-store .card h3{font-size:19px}
+#djeango-store .card p{font-size:14.5px;margin:12px 0 20px;flex:1}
+#djeango-store .card .price{color:var(--accent);font-weight:800;margin-bottom:16px;font-size:15px}
+
+#djeango-store .foot{margin-top:60px;padding:34px 0 60px;border-top:1px solid var(--line);text-align:center}
+#djeango-store .foot p{font-size:13px;color:var(--muted);margin:6px 0}
+@media(max-width:640px){#djeango-store .tier .nm,#djeango-store .tier .pr{flex:0 0 auto}}
+</style>
+
+<div class="head">
+  <svg class="mark" viewBox="0 0 100 100" fill="none" aria-label="Djeango Tech">
+    <rect x="8" y="8" width="84" height="84" rx="11" fill="none" stroke="#F3EAD9" stroke-width="5"/>
+    <rect x="15" y="15" width="70" height="70" rx="6" fill="none" stroke="#F3EAD9" stroke-width="1.5"/>
+    <g fill="#F3EAD9" transform="translate(48,50) scale(0.98) translate(-50,-50)">
+      <path d="M50,23 H31 L25,20.5 L26,32 H50 Z"/>
+      <path d="M26,35.5 H35 V54 Q35,68 50,68 V77 Q26,77 26,54 Z"/>
+      <rect x="45.5" y="23" width="9" height="54"/>
+      <path d="M54,23 H69 L75,20.5 L74,32 H54 Z"/>
+      <path d="M54,45.5 H65 L70.5,43 L69.5,54.5 H54 Z"/>
+      <path d="M54,68 H69 L75,65.5 L74,77 H54 Z"/>
+    </g>
+  </svg>
+  <div class="brand">Djeango Tech</div>
+  <h1>Tools for people who<br>would rather own than rent</h1>
+  <p>Practical, fact-checked kits for building real things: local AI, certifications, and the job that follows. Every number verified before it ships.</p>
+</div>
+
+<div class="wrap">
+
+  <div class="sec">
+    <div class="eyebrow">Flagship</div>
+    <h2>The Self-Hosted LLM Kit</h2>
+    <div class="rule"></div>
+    <div class="hero">
+      <h3>Own your AI. All of it.</h3>
+      <p>Stop renting intelligence. Pick the right hardware, run your first local model, put it on a server that works around the clock, sync it across every machine you own, and give it a memory so it actually knows you and your documents.</p>
+      <div class="stats">
+        <div class="stat"><b>148 pages</b><span>across 14 guides</span></div>
+        <div class="stat"><b>Working code</b><span>not screenshots</span></div>
+        <div class="stat"><b>Free tier</b><span>check your machine first</span></div>
+        <div class="stat"><b>$0</b><span>subscriptions, ever</span></div>
+      </div>
+    </div>
+
+    <div class="tier">
+      <div class="nm">Free</div><div class="pr">$0</div>
+      <div class="ds"><b>The Fit Check</b>Find out in two minutes what your current machine can run, and the cheapest upgrade that unlocks the next level.</div>
+      <a class="btn solid" href="https://djeangodoc.gumroad.com/l/self-hosted-llm-homelab-guide">Start free</a>
+    </div>
+    <div class="tier">
+      <div class="nm">Builder</div><div class="pr">$29</div>
+      <div class="ds"><b>Pick the parts, run your first model</b>Three named builds, the VRAM math, the used-market playbook, and what it really costs to run.</div>
+      <a class="btn" href="https://djeangodoc.gumroad.com/l/self-hosted-llm-homelab-guide">Choose tier</a>
+    </div>
+    <div class="tier">
+      <div class="nm">Operator</div><div class="pr">$59</div>
+      <div class="ds"><b>Put it on a server, working three ways</b>Provision, harden and serve, reachable from your phone with no port open to the internet.</div>
+      <a class="btn" href="https://djeangodoc.gumroad.com/l/self-hosted-llm-homelab-guide">Choose tier</a>
+    </div>
+    <div class="tier">
+      <div class="nm">Architect</div><div class="pr">$99</div>
+      <div class="ds"><b>One AI on every machine you own</b>Mac, PC and server in sync, plus a tuning guide and a fill-in benchmark sheet.</div>
+      <a class="btn" href="https://djeangodoc.gumroad.com/l/self-hosted-llm-homelab-guide">Choose tier</a>
+    </div>
+    <div class="tier">
+      <div class="nm">Full Stack</div><div class="pr">$149</div>
+      <div class="ds"><b>The complete build, and it remembers you</b>A self-hosted dashboard, a document memory system, and one assistant that runs your day.</div>
+      <a class="btn" href="https://djeangodoc.gumroad.com/l/self-hosted-llm-homelab-guide">Choose tier</a>
+    </div>
+    <p class="note">Each tier includes everything below it. Pick your tier on the product page. Launch pricing.</p>
+  </div>
+
+  <div class="sec">
+    <div class="eyebrow">Also from Djeango Tech</div>
+    <h2>Certifications and career kits</h2>
+    <div class="rule"></div>
+    <div class="grid">
+
+      <div class="card">
+        <div class="tag">Certification</div>
+        <h3>Security Plus, Pass and Get Hired</h3>
+        <p>A 21-day plan for the SY0-701 exam, plus the resumes and job-search toolkit to turn the certification into interviews.</p>
+        <div class="price">From $59</div>
+        <a class="btn" href="https://djeangodoc.gumroad.com/l/security-plus-pass-and-get-hired">View kit</a>
+      </div>
+
+      <div class="card">
+        <div class="tag">Certification</div>
+        <h3>CCNA Fast Track</h3>
+        <p>Pass the 200-301 in 60 days and build job-ready proof. Eight guided Packet Tracer labs that double as portfolio projects.</p>
+        <div class="price">From $69</div>
+        <a class="btn" href="https://djeangodoc.gumroad.com/l/ccna-fast-track">View kit</a>
+      </div>
+
+      <div class="card">
+        <div class="tag">Small business</div>
+        <h3>Launch Your AI Support Bot</h3>
+        <p>A no-code system for a 24/7 support bot that answers your common questions and hands the tricky ones to you. One weekend, no developer.</p>
+        <div class="price">From $49</div>
+        <a class="btn" href="https://djeangodoc.gumroad.com/l/launch-ai-support-bot">View kit</a>
+      </div>
+
+      <div class="card">
+        <div class="tag">Free tool</div>
+        <h3>ATS Resume Kit</h3>
+        <p>See how the software reads your resume before a human ever does. Free checker and checklist, with a done-for-you template if you want it.</p>
+        <div class="price">Free, template $10</div>
+        <a class="btn solid" href="https://djeangodoc.gumroad.com/l/resume-kit">Get it free</a>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="foot">
+    <p>Djeango Tech. Digital products for people who would rather own their tools than rent them.</p>
+    <p>All sales are for instant-access digital downloads. If something is wrong, reply to your receipt and we will make it right.</p>
+  </div>
+
+</div>
+</div>
