@@ -971,7 +971,23 @@
 })();
 
 (function(){
-  var KIT_FORM="9689272", HOSTED="https://djeango-tech.kit.com/4d20c4bd34";
+  var KIT_FORM="9757857";
+  var CHECKLIST="https://djeango.com/downloads/djeango-local-ai-starter-checklist.pdf";
+  function signupSource(){
+    try{
+      var p=new URLSearchParams(location.search);
+      var u=p.get('utm_source'); if(u) return u.toLowerCase().slice(0,60);
+      var r=document.referrer||'';
+      if(!r) return 'direct';
+      var h=new URL(r).hostname.replace(/^www\./,'');
+      if(h===location.hostname) return 'direct';
+      if(/reddit/.test(h)) return 'reddit';
+      if(/instagram/.test(h)) return 'instagram';
+      if(/linkedin/.test(h)) return 'linkedin';
+      if(/gumroad/.test(h)) return 'gumroad';
+      return h.slice(0,60);
+    }catch(err){ return 'unknown'; }
+  }
   var f=document.getElementById('fcForm');
   if(f){f.addEventListener('submit',function(e){
     e.preventDefault();
@@ -980,13 +996,15 @@
     if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){
       msg.style.display='block'; msg.textContent='That email does not look right. Check it and try again.'; return;}
     btn.disabled=true; btn.textContent='Sending';
-    var fd=new FormData(); fd.append('email_address',email);
+    var fd=new FormData();
+    fd.append('email_address',email);
+    fd.append('fields[signup_source]',signupSource());
     fetch('https://app.kit.com/forms/'+KIT_FORM+'/subscriptions',{method:'POST',body:fd})
       .then(function(r){return r.ok?r:Promise.reject();})
       .then(function(){f.style.display='none'; msg.style.display='block';
-        msg.textContent='Sent. Check your inbox, and your spam folder if it is not there in a minute.';})
+        msg.innerHTML='Here is your checklist: <a style="color:var(--accent)" href="'+CHECKLIST+'" target="_blank" rel="noopener">download the Local AI Starter Checklist</a>. Confirm the email we just sent and it stays in your inbox too.';})
       .catch(function(){msg.style.display='block';
-        msg.innerHTML='Could not send from here. <a style="color:var(--accent)" href="'+HOSTED+'" target="_blank" rel="noopener">Use this form instead</a>.';
+        msg.innerHTML='Could not reach the mail service, so here is the file directly: <a style="color:var(--accent)" href="'+CHECKLIST+'" target="_blank" rel="noopener">download the Local AI Starter Checklist</a>.';
         btn.disabled=false; btn.textContent='Send it';});
   });}
   var url='https://kit.djeango.com/';
